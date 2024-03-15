@@ -51,4 +51,4 @@ jobs:
           git add -f output/*
           current_date=$(date +"%Y-%m-%d")
           git commit -m "auto scrap on ${current_date}"
-          git push origin master
+          git push
