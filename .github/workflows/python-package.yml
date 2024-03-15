@@ -44,7 +44,7 @@ jobs:
       # Commit all changed files back to the repository
       - name: commit and push
         run: |
-          git -f add output/*
+          git add output/*
           current_date=$(date +"%Y-%m-%d")
           git commit -m "auto scrap on ${current_date}"
           git push
