@@ -41,19 +41,15 @@ jobs:
         run: |
           python3 scrape-data_JSON_test.py
       # Commit all changed files back to the repository
-      - name: commit and push
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: commit
         run: |
           git config --global user.email "minhsueh@usc.edu"
           git config --global user.name "minhsueh"
-          git remote set-url origin https://github.com/minhsueh/Auto-namus-scraper/
-          git remote -v
           git add -f output/*
           current_date=$(date +"%Y-%m-%d")
           git commit -m "auto scrap on ${current_date}"
-        - name: Push changes
-          uses: ad-m/github-push-action@master
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            branch: ${{ github.ref }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
