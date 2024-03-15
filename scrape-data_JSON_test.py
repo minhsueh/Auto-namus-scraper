@@ -6,8 +6,9 @@ import functools
 import time
 import pandas as pd
 import datetime
+from pytz import timezone
 
-current_time = "{date:%Y-%m-%d-%H-%M-%S}".format(date=datetime.datetime.now())
+current_time = "{date:%Y-%m-%d-%H-%M-%S}".format(date=datetime.datetime.now(timezone("US/Pacific")))
 
 SEARCH_LIMIT = 10000
 REQUEST_BATCH_SIZE = 50
