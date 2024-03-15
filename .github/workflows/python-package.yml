@@ -42,8 +42,9 @@ jobs:
         run: |
           python3 scrape-data_JSON_test.py
       # Commit all changed files back to the repository
-      - uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          add_options: "-f"
-          file_pattern: "output/*/*/*.json"
-          disable_globbing: true
+      - name: commit and push
+        run: |
+          git -f add output/*
+          current_date=$(date +"%Y-%m-%d")
+          git commit -m "auto scrap on ${current_date}"
+          git push
