@@ -43,8 +43,8 @@ jobs:
       # Commit all changed files back to the repository
       - name: commit
         run: |
-          git config --global user.email "minhsueh@usc.edu"
-          git config --global user.name "minhsueh"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add -f output/*
           current_date=$(date +"%Y-%m-%d")
           git commit -m "auto scrap on ${current_date}"
