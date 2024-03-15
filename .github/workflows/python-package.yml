@@ -52,4 +52,8 @@ jobs:
           git add -f output/*
           current_date=$(date +"%Y-%m-%d")
           git commit -m "auto scrap on ${current_date}"
-          git push --quiet --set-upstream -u origin main
+        - name: Push changes
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: ${{ github.ref }}
