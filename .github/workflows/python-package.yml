@@ -5,7 +5,7 @@ name: Scraping NamUs
 
 on:
   schedule:
-    - cron: "10 3 * * *"
+    - cron: "0 0 * * *"
   push:
     branches:
       - main
@@ -39,14 +39,14 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --ignore=E203,E402 --statistics
       - name: Execute scraping file
         run: |
-          python3 scrape-data_JSON_test.py
+          python3 scrape-data_JSON.py
       # Commit all changed files back to the repository
       - name: commit
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add -f output/*
-          TZ=US/Pacific printf -v current_date "%(%Y-%m-%d)T\n" -1
+          TZ=US/Pacific printf -v current_date "%(%Y-%m-%d %H:%M:%S)T\n" -1
           git commit -m "auto scrap on ${current_date}"
       - name: Push changes
         uses: ad-m/github-push-action@master
