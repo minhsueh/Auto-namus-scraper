@@ -46,7 +46,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add -f output/*
-          current_date=$(-d "7 hours" date +"%Y-%m-%d")
+          current_date=$(date -d "7 hours" +"%Y-%m-%d")
           git commit -m "auto scrap on ${current_date}"
       - name: Push changes
         uses: ad-m/github-push-action@master
