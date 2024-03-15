@@ -45,5 +45,5 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           add_options: "-f"
-          file_pattern: "output/*/*/*./json"
+          file_pattern: "output/*/*/*.json"
           disable_globbing: true
