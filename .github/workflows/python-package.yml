@@ -5,7 +5,7 @@ name: Scraping NamUs
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 7,10,13,16 * * *"
   push:
     branches:
       - main
@@ -39,7 +39,7 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --ignore=E203,E402 --statistics
       - name: Execute scraping file
         run: |
-          python3 scrape-data_JSON.py
+          python3 scrape-data_JSON_test.py
       # Commit all changed files back to the repository
       - name: commit
         run: |
