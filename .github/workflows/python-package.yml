@@ -43,3 +43,6 @@ jobs:
           python3 scrape-data_JSON_test.py
       # Commit all changed files back to the repository
       - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          file_pattern: "output/"
+          disable_globbing: true

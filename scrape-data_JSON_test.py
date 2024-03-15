@@ -138,6 +138,10 @@ def main():
             else:
                 output_df.to_csv(output_summary_file_name)
 
+            # add empty file for github working tree
+            empty_file_path = DATA_OUTPUT_PATH.format(current_time=current_time, type=caseType)
+            with open(empty_file_path + ".empty", "w") as fp:
+                pass
     print("Scraping completed")
 
 
