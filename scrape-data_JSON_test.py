@@ -39,6 +39,8 @@ def main():
         print("Collecting: {type}".format(type=caseType))
         for state in states:
             state_name = state["name"]
+            if state_name != "Delaware":
+                continue
             print(f"state = {state}")
             output_dict = dict()
             state_list = []

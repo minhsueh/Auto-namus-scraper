@@ -1,9 +1,11 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Python package
+name: Scraping NamUs
 
 on:
+  schedule:
+    - cron: "* 7 * * 0"
   push:
     branches:
       - main
@@ -38,23 +40,6 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --ignore=E203,E402 --statistics
       - name: Execute scraping file
         run: |
-          python3 scrape-data_JSON.py
-      - name: Commit files
-        id: commit
-        run: |
-          git config --local user.email "minhsueh@usc.edu"
-          git config --local user.name "minhsueh"
-          git add --all
-          if [-z "$(git status --porcelain)"]; then
-            echo "::set-output name=push::false"
-          else
-            current_date=$(date +"%Y-%m-%d")
-            git commit -m "Automatic update on $current_date" -a
-            echo "::set-output name=push::true"
-          fi
-        shell: bash
-      - name: Push changes
-        if: steps.commit.outputs.push == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          python3 scrape-data_JSON_test.py
+      # Commit all changed files back to the repository
+      - uses: stefanzweifel/git-auto-commit-action@v5
